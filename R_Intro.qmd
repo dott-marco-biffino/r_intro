@@ -1,0 +1,215 @@
+---
+title: "Introduzione a R"
+subtitle: "Un linguaggio di programmazione libero e gratuito in salsa statistica"
+author: "Marco Biffino"
+format: html
+---
+
+## Software libero
+
+> “Free software” is a matter of liberty, not price. To understand the concept, you should think of “free” as in “free speech”, not as in “free beer”. *Richard Stallman - Free Software Fundation*
+
+> Free software is a matter of the users’ freedom to run, copy, distribute, study, change and improve the software. *Richard Stallman - Free Software Fundation*
+
+Sono quattro le libertà fondamentali che il software libero garantisce agli utenti:
+
+1. Eseguire il programma per qualunque scopo
+
+2. Studiare il funzionamento del programma e modificarlo per adattarlo alle proprie esigenze
+Accedere al codice sorgente ne è un prerequisito 
+
+3. Facoltà di ridistribuire copie del programma affinché si possa aiutare le persone vicine
+
+4. Facoltà di migliorare il programma e di rilasciare al pubblico la versione migliorata, affinché l’intera comunità possa beneficiarne
+
+### Software libero e analisi statistica
+
+## R Project for Statistical Computing
+
+Il sito web di R è [www.r-project.org](https://www.r-project.org) visibile in @fig-rproject. Nella home page sulla sinistra troviamo alcuni link interessanti:
+
+![Home page del sito *The R Project for Statistical Computing*. Le frecce arancioni evidenziano alcuni punti discussi nel testo.](figures/r-project_website.png){#fig-rproject}
+
+- Quello alla lista di mirror del [CRAN  - Comprehensive R Archive Network](https://cran.r-project.org/mirrors.html) utile per lo scaricamento del software su cui torneremo più avanti;
+
+- Quello alla [pagina](https://www.r-project.org/about.html) di informazioni generali su R;
+
+- Una serie di link utili sotto la voce **Documentation** che permette l'accesso a manuali, a domande frequenti, a [R Journal](https://journal.r-project.org/), elenco dei [libri su R](https://www.r-project.org/doc/bib/R-books.html) e altro.
+
+
+### Cosa è R
+
+Un linguaggio e un ambiente per il calcolo statistico e la rappresentazione grafica
+È un progetto GNU simile al linguaggio S sviluppato da Chambers e coll. presso i Bell Labs e ne rappresenta una sua diversa implementazione, con alcune importanti differenze, e con una buona compatibilità
+È la base Open Source per la ricerca in statistica metodologica
+
+Un ambiente interattivo per il calcolo statistico e la rappresentazione grafica dei dati basato su un dialetto del linguaggio S (è un cugino del notissimo S-Plus)
+Un linguaggio matriciale, basato sul paradigma funzionale e dotato di capacità di programmazione  sia orientata agli oggetti, sia strutturata
+Non necessita di dichiarazioni specifiche per definire gli array
+Gli array possono essere definiti per concatenazione
+Non necessita di iterazioni per operare sugli array
+
+### Interfaccia
+
+R offre all’utente è un’interfaccia di base a linea di comando
+L’ambiente è interattivo: quando l’utente digita al prompt un’istruzione e preme invio, R la elabora e ne visualizza sullo schermo il risultato
+Fanno eccezione le istruzioni di assegnazione a seguito delle quali non è previsto alcun output
+
+Esistono molte interfacce grafiche alternative
+Alcune rendono R simile ad altri ambienti di calcolo statistico con interfaccia grafica basata su menù
+Altre sono maggiormente orientate alla programmazione
+Maggiori info su http://www.sciviews.org/_rgui/ 
+
+## Il linguaggio R
+
+### Tipi di dati fondamentali
+
+### Valori speciali
+
+### Vettori, matrici e array
+
+### Liste
+
+### Data frame
+
+### Attributi degli oggetti
+
+### Parole chiave riservate
+
+Nella definizione del linguaggio R le seguenti parole chiave sono riservate e non possono essere utilizzate come nomi simbolici:
+break, else, for, function, if, in, next, repeat, while.
+
+I seguenti invece sono valori speciali e in quanto tali sono riservati:
+FALSE, F, Inf, NA, NaN, NULL, TRUE, T
+
+### Programmazione funzionale
+
+### Controllo del flusso
+
+### Programmazione orientata agli oggetti
+
+### Espandibilità
+
+#### CRAN
+
+#### Gestione dei pacchetti 
+
+#### CRAN Task Views
+
+#### Creazione di nuovi pacchetti
+
+## Gestione di una sessione di lavoro
+
+### Il workspace
+
+Quando R è in esecuzione il workspace, o spazio di lavoro, è interamente contenuto nella memoria dell’elaboratore e contiene gli oggetti che vengono creati nel corso delle elaborazioni a seguito di operazioni di assegnazione a nomi simbolici — cioè i dati, i risultati e le eventuali funzioni create dall’utente
+
+In R, qualsiasi cosa venga assegnata ad un nome simbolico diviene un oggetto nello spazio di lavoro. 
+
+- ls()
+
+  Visualizza l’elenco degli oggetti contenuti nel workspace.
+
+- ls.str()
+
+  Visualizza un elenco degli oggetti, aggiungendo informazioni sul tipo dell’oggetto e sul valore.
+
+- rm(<nome>)
+
+  Rimuove l’oggetto <nome> dal workspace.
+
+- rm(<list>)
+
+- save(<nome>, file="nomefile.Rdata")
+
+  Salva nel file nomefile.rda l’oggetto<nome>.
+
+- save.image(file="nomefile.Rdata")
+
+  Salva l’immagine dell’intero workspace nel file nomefile.rda. Questa immagine non sarà letta al successivo riavvio del sistema, ma dovrà essere ricaricata esplicitamente.
+
+- load(file="nomefile.Rdata")
+
+  Carica nello spazio di lavoro gli oggetti R contenuti nel file nomefile.Rdata
+
+### La cartella di lavoro
+
+È possibile salvare l’immagine del workspace in un file con estensione .Rdatata nella directory di lavoro corrente.
+
+
+
+### Le istruzioni in R
+
+### Nomi simbolici
+
+La stringa <nome> sta ad indicare un generico nome simbolico usato per memorizzare il risultato della valutazione di <espressione> nello spazio di lavoro
+
+Come in molti altri linguaggi, i nomi simbolici sono costituiti da stringhe alfanumeriche in cui il primo carattere deve essere una lettera. 
+
+In R esistono delle parole chiave che non è possibile usare come nomi simbolici e l’interprete delle istruzioni fa distinzione fra lettere maiuscole e minuscole
+
+I nomi a e A sono considerati diversi, così come le funzioni w() ed W()
+
+### Sessioni si lavoro non interattive
+
+#### source()
+
+R offre anche la facoltà di lavorare in modo non interattivo
+Cioè la possibilità di inserire sequenze di istruzioni in un file di testo per automatizzare il lavoro
+Questi file possono essere letti dall’interprete dei comandi mediante l’istruzione
+source(<nomefile.r>, echo=T, print.eval=T) 
+
+#### Rscript
+
+### Principali funzioni per la gestione della sessione di lavoro
+
+## Il sistema di aiuto in linea e la documentazione
+
+### Funzioni per l’interrogazione dell’aiuto in linea
+
+- help("<parola_chiave>") oppure ?<parola_chiave>
+
+  Visualizza la pagina di aiuto relativa alla parola chiave del linguaggio R, se esiste, altrimenti visualizza un messaggio di errore.
+  
+- help.search("<stringa>") 
+
+  Visualizza l’elenco delle pagine di aiutoche contengono <stringa>. È consigliabileinterrogare il sistema di aiuto conquesta istruzione quando non si conosceesattamente quale parola chiave cercare.
+  
+- help.start()
+
+  Avvia il sistema di aiuto in formato HTML. Tutte le successive richieste di aiuto vengono inviate al browser.
+  
+- options(htmlhelp=FALSE)
+
+  Disattiva il sistema di aiuto in formato HTML.
+  
+- example(<argomento>)
+
+  Esegue il codice esemplificativo riportato in calce alla pagina relativa ad <argomento>
+
+### Contenuti di una tipica pagina di aiuto
+
+Ogni pagina è identificata da un titolo ed è suddivisa in sezioni.
+
+**Description**: breve descrizione dell’argomento.
+
+**Usage**: fornisce la sintassi da usare nella chiamata della funzione, indicando il nome degli argomenti previsti e i loro eventuali valori predefiniti, nella forma nome=valore.
+
+**Arguments**: riporta la lista degli argomenti, indicando per ogni argomento il tipo dei suoi valori, l’obbligatorietà o	l’opzionalità dello stesso.
+
+**Details**: fornisce dettagli tecnici inerenti al modo in cui viene 			eseguita la funzione.
+
+**Value**: descrive la natura del risultato generato
+
+**Note**: avvertenze utili, generalmente riguardanti il risultato prodotto
+
+**References**: riferimenti bibliografici e documentali relativi alla metodologia usata.
+
+**See Also**: indica quali argomenti del sistema di aiuto sono correlati con l’argomento visualizzato.
+
+**Examples**:	esempi di uso della funzione descritta.
+
+
+
+
+

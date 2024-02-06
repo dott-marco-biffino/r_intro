@@ -20,15 +20,13 @@ Accedere al codice sorgente ne è un prerequisito
 
 3. Facoltà di ridistribuire copie del programma affinché si possa aiutare le persone vicine
 
-4. Facoltà di migliorare il programma e di rilasciare al pubblico la versione migliorata, affinché l’intera comunità possa beneficiarne
+4. Facoltà di migliorare il programma e di rilasciare al pubblico la versione migliorata, affinché l'intera comunità possa beneficiarne
 
 ### Software libero e analisi statistica
 
 ## R Project for Statistical Computing
 
-Il sito web di R è [www.r-project.org](https://www.r-project.org) visibile in @fig-rproject. Nella home page sulla sinistra troviamo alcuni link interessanti:
-
-![Home page del sito *The R Project for Statistical Computing*. Le frecce arancioni evidenziano alcuni punti discussi nel testo.](figures/r-project_website.png){#fig-rproject}
+Il sito web di R è [www.r-project.org](https://www.r-project.org) visibile in @fig-rproject . Nella home page sulla sinistra troviamo alcuni link interessanti:
 
 - Quello alla lista di mirror del [CRAN  - Comprehensive R Archive Network](https://cran.r-project.org/mirrors.html) utile per lo scaricamento del software su cui torneremo più avanti;
 
@@ -36,18 +34,35 @@ Il sito web di R è [www.r-project.org](https://www.r-project.org) visibile in @
 
 - Una serie di link utili sotto la voce **Documentation** che permette l'accesso a manuali, a domande frequenti, a [R Journal](https://journal.r-project.org/), elenco dei [libri su R](https://www.r-project.org/doc/bib/R-books.html) e altro.
 
+![Home page del sito *The R Project for Statistical Computing*. Le frecce arancioni evidenziano alcuni punti discussi nel testo. Screenshot effettuato il 06/02/2024.](figures/r-project_website.png){#fig-rproject}
 
 ### Cosa è R
 
-Un linguaggio e un ambiente per il calcolo statistico e la rappresentazione grafica
-È un progetto GNU simile al linguaggio S sviluppato da Chambers e coll. presso i Bell Labs e ne rappresenta una sua diversa implementazione, con alcune importanti differenze, e con una buona compatibilità
-È la base Open Source per la ricerca in statistica metodologica
+Un linguaggio e un ambiente per il calcolo statistico e la rappresentazione grafica dei dati.
 
-Un ambiente interattivo per il calcolo statistico e la rappresentazione grafica dei dati basato su un dialetto del linguaggio S (è un cugino del notissimo S-Plus)
-Un linguaggio matriciale, basato sul paradigma funzionale e dotato di capacità di programmazione  sia orientata agli oggetti, sia strutturata
-Non necessita di dichiarazioni specifiche per definire gli array
-Gli array possono essere definiti per concatenazione
-Non necessita di iterazioni per operare sugli array
+È un progetto GNU simile al linguaggio S sviluppato da Chambers e coll. presso i Bell Labs e ne rappresenta una sua diversa implementazione con una buona retro compatibilità, nonostante alcune importanti differenze.
+
+**R** offre sia un ambiente interattivo per il calcolo statistico e la rappresentazione grafica dei dati, sia l'esecuzione di script invocando l'interprete da un terminale.
+
+**R** è:
+
+- È un linguaggio matriciale, cioè un linguaggio che:
+
+  - Non necessita di dichiarazioni specifiche per definire vettori, matrici e array (cfr. @fig-postit), 
+  
+  - Gli array possono essere definiti per concatenazione, 
+  - Non necessita di iterazioni per operare sugli array
+
+- A tipizzazione debole  (cfr. @fig-postit),
+
+- Basato sul paradigma di programmazione funzionale,
+
+- Dotato di capacità di programmazione strutturata (cicli e istruzioni condizionali),
+
+- Dotato di capacità di programmazione orientata agli oggetti.
+
+![Un mio appunto del 2009 sul confronto fra **R** e **FORTRAN 77** relativo alla creazione di una matrice. ](figures/post-it.png){#fig-postit}
+
 
 ### Interfaccia
 
@@ -64,15 +79,255 @@ Maggiori info su http://www.sciviews.org/_rgui/
 
 ### Tipi di dati fondamentali
 
-### Valori speciali
+I tipi di dati fondamentali in **R** sono:
+```{r}
+
+```
+
+
+- ```logical``` con i valori ```FALSE``` e ```TRUE``` (che possono essere abbreviati in ```F``` e ```T```)
+
+- ```integer``` numeri interi contraddistinti dal suffisso ```L``` p.es. ```23L```
+
+- ```double``` numeri in doppia precisione che godono di una rappresentazione “intelligente”
+
+- ```character``` stringhe racchiuse fra apici (```'```) o doppi apici (```"```)
+
+### Valori speciali e costanti
+
+Oltre ai già menzionati ```FALSE``` e ```TRUE```, abbreviati in ```F``` e ```T```, in **R** esistono i seguenti valori speciali:
+
+- ```Inf```
+
+- ```NA``` 
+
+- ```NaN```
+
+- ```NULL```)
+
+In **R** esistono, inoltre, le seguenti costanti (in senso lato):
+
+- ```LETTERS```, ```letters```, 
+
+- ```month.abb```, ```month.name```, 
+
+- ```pi```.
+
+Diversamente da molti altri linguaggio la costante di Nepero, base dei logaritmi naturali, non è definita come costante in **R**.
 
 ### Vettori, matrici e array
 
+Primi esempi sui vettori
+
+Creazione di un vettore intero
+
+```{r integer}
+#| echo: true
+c(4L, 6L, 11L, 3L, 2L)
+```
+
+Creazione di un vettore in doppia precisione 
+
+```{r double}
+#| echo: true
+c(4, 6, 11, 3, 2)
+```
+
+Creazione di un vettore stringa
+
+```{r character}
+#| echo: true
+c("4L", "6L", "11L", "3L", "2L")
+```
+
+Assegnazione di un vettore a una variabile
+
+```{r integer2}
+#| echo: true
+x<- c(4L, 6L, 11L, 3L, 2L)
+```
+
+L'assegnazione *di solito* non produce alcun output nella console
+
+Per visualizzare il contenuto della variabile ```x``` è sufficiente scriverla al prompt e premere invio
+
+```{r integer3}
+#| echo: true
+x
+```
+
+In realtà questa è solo una scorciatoia per una chiamata di funzione più estesa
+
+```{r integer4}
+#| echo: true
+print(x)
+```
+
+Ovviamente sono disponibili i comuni operatori matematici applicabili a agli operandi come il vettore ```x```
+
+```{r math1}
+#| echo: true
+x^2
+```
+
+```{r math2}
+#| echo: true
+sqrt(x)
+```
+
+```{r math3}
+#| echo: true
+sqrt(x) - x^2
+```
+
+In realtà l'elevamento a potenza ```^``` è un operatore matematico mentre ```sqrt()``` è una funzione
+
+I principali operatori matematici in R sono ```+```, ```-```, ```*```, ```/```, ```^```, ```%%```, ```%/%```
+
+Per i dettagli si visiti la pagina di aiuto mediante il comando ```?Arithmetic``` 
+
+È possibile concatenare vettori in un vettore più lungo
+```{r vector1}
+#| echo: true
+y<- c(x, x^2, sqrt(x))
+y
+```
+
+Oppure arrangiare gli elementi di un vettore in una matrice
+```{r matrix1}
+#| echo: true
+A<- matrix(y, nrow=3, ncol=5)
+A
+```
+
+Utilizzare ```?c``` e ```?matrix``` per consultare le relative pagine di aiuto
+
+Alcuni calcoli statistici e funzioni applicate al vettore ```y```:
+
+```{r}
+#| echo: true
+sum(y)
+sum(y) / length(y)
+sqrt(sum((y-mean(y))^2)/(length(y)-1))
+```
+
+Ovvero
+```{r}
+#| echo: true
+mean(y)
+sd(y)
+```
+
+
 ### Liste
+
+- Una lista in R è un insieme ordinato di oggetti qualsiasi, anche di tipo eterogeneo
+
+- Agli elementi di una lista può essere attribuito un nome 
+
+- Gli elementi di una lista sono accessibili anche attraverso l’indice di posizione
+
+- Esistono funzioni specifiche che consentono di manipolare le liste in modo rapido ed efficiente evitando l'uso di cicli
+
+```{r list1}
+#| echo: true
+l1<- list(
+  pippo=c(1,2,3), 
+  letters[1:3], 
+  mat = A)
+
+l1
+```
+
+#### Sottoliste e estrazione di elementi da una lista
+
+Lista con un solo 1° elemento
+```{r list2}
+#| echo: true
+
+l1[1]
+```
+
+1° elemento mediante indice
+
+```{r lis3}
+#| echo: true
+l1[[1]]
+```
+
+1° elemento mediante nome
+
+```{r list4}
+#| echo: true
+l1$pippo
+```
+
 
 ### Data frame
 
+- Sono gli oggetti R destinati a memorizzate le tabelle di dati
+
+- Un data frame è una lista di vettori, anche di tipo eterogeneo, tutti della stessa lunghezza  
+
+- Esistono metodi per accedere agevolmente ai dati in un data frame 
+
+```{r df1}
+#| echo: true
+df<- data.frame(
+  num = c(2, 15, 103),
+  stg = c("M.B.", "A.T.", "S.R."),
+  lgl = c(T, F, T)
+)
+
+df
+
+```
+
+
 ### Attributi degli oggetti
+
+Per ogni oggetto creato con **R** è possibile specificare un insieme arbitrario di attributi. 
+
+Alcuni attributi, quali ad esempio ```dim```, ```dimnames``` e ```class```, hanno un significato specifico e sono utilizzati dall'interprete **R** per espletare le sue funzioni.
+
+In generale gli attributi di un oggetto si possono: 
+
+- consultare mediante la funzione ```attributes()```,
+
+- impostare o modificare mediante la funzione ```attr()```.
+
+```{r}
+#| echo: true
+z<- summary(y)
+
+attributes(z)
+
+attr(z, which = "new_attr")<- "new_value"
+attributes(z)
+```
+
+Per quegli attributi che hanno un significato speciale e che ricorrono frequentemente possono esistere specifiche funzioni
+
+```{r attributes3}
+#| echo: true
+attributes(A)
+
+class(A)
+dim(A)
+ncol(A)
+nrow(A)
+```
+
+Facciamo un altro esempio con il data frame creato in precedenza.
+
+```{r attributes4}
+#| echo: true
+df
+attributes(df)
+names(df)
+rownames(df)<- letters[1:3]
+df
+```
 
 ### Parole chiave riservate
 
@@ -83,6 +338,79 @@ I seguenti invece sono valori speciali e in quanto tali sono riservati:
 FALSE, F, Inf, NA, NaN, NULL, TRUE, T
 
 ### Programmazione funzionale
+
+In **R**, qualsiasi azione è definita mediante una chiamata a un'opportuna funzione cui vengono passati degli argomenti che possono essere oggetti, parametri ed opzioni.
+
+La chiamata di una funzione produce un risultato che può essere visualizzato o assegnandolo ad un nome simbolico.
+
+In **R** l'utente ha la possibilità di definire nuove funzioni all'interno dello spazio di lavoro mediante la parola chiave ```function()```.
+
+Le funzioni utente sono l'elemento fondamentale della programmazione nel linguaggio **R** e per la sua estensione. 
+
+Vediamo alcuni esempi di funzioni definite dall'utente.
+
+**Esempio 1**: Vogliamo definire una funzione che calcoli la c.d. deviazione standard di popolazione (con denominatore ```n``` anziché ```n - 1```)
+
+```{r functions1}
+#| echo: true
+sd_pop<- function(x) {
+  sqrt( 
+    sum( (x - mean(x) )^2 ) / ( length(x) )
+  )
+}
+```
+
+
+**Esempio 2**: Funzione che calcola l'intervallo di confidenza per la proporzione di un attributo dicotomico
+
+Definiamo la funzione ```ic_prop```:
+
+```{r functions3}
+#| echo: true
+ic_prop <- function(cases, n, labels, level = 0.95) {
+  p <- cases / n
+  z <- qnorm(level)
+  me <- z * sqrt(p * (1 - p) / n)
+  ic1 <- p - me
+  ic2 <- p + me
+  res <- data.frame(
+    cases = cases,
+    size = n,
+    prop = round(p * 100, 2),
+    inf = round(ic1 * 100, 2),
+    sup = round(ic2 * 100, 2)
+  )
+  rownames(res) <- labels
+  return(res)
+}
+```
+
+```{r functions4}
+#| echo: true
+etich<- c("Fumatore", "ExFumatore", "MaiFumatore")
+casi<- c(324, 146, 513)
+dim_camp<- c(983, 1025, 1345)
+
+ic_prop(cases = casi, 
+        n = dim_camp, 
+        labels = etich)
+```
+
+```{r functions5}
+#| echo: true
+casi<- 324
+dim_camp<- 983
+liv_conf<- c(.95, .99)
+etich<- paste("Liv. ", 
+              liv_conf * 100, "%", 
+              sep = "")
+
+ic_prop(cases = casi, 
+        n = dim_camp, 
+        labels = etich, 
+        level = liv_conf)
+```
+
 
 ### Controllo del flusso
 
@@ -140,15 +468,38 @@ In R, qualsiasi cosa venga assegnata ad un nome simbolico diviene un oggetto nel
 
 ### Le istruzioni in R
 
+Le istruzioni in **R** possono essere costituite da:
+
+- **Espressioni**: sequenze finite di operandi (vettori, matrici, liste, altri oggetti) e operatori (aritmetici, logici, di relazione, di concatenazione, ecc...) che deve essere valutata
+
+- **Chiamate di funzione**: tipo ```f(...)```
+
+- **Assegnazioni**: in una delle seguenti forme 
+
+  - ```<nome> <- <espressione>```
+  - ```<espressione> -> <nome>```
+  - ```assign(<nome>, <espressione>)```
+  
+- Questi "elementi", espressioni, chiamate di funzione e assegnazioni possono essere combinati insieme
+
 ### Nomi simbolici
 
-La stringa <nome> sta ad indicare un generico nome simbolico usato per memorizzare il risultato della valutazione di <espressione> nello spazio di lavoro
+La stringa ```<nome>``` che abbiamo incontrato sopra sta ad indicare un generico nome simbolico usato per memorizzare nello spazio di lavoro il risultato della valutazione di un ```<espressione>```.
 
-Come in molti altri linguaggi, i nomi simbolici sono costituiti da stringhe alfanumeriche in cui il primo carattere deve essere una lettera. 
+In **R** i nomi simbolici:
 
-In R esistono delle parole chiave che non è possibile usare come nomi simbolici e l’interprete delle istruzioni fa distinzione fra lettere maiuscole e minuscole
+- possono contenere lettere maiuscole e/o minuscole e/o cifre,
 
-I nomi a e A sono considerati diversi, così come le funzioni w() ed W()
+- possono contenere i caratteri "_" e ,
+
+- devono iniziare con una lettera o con ".",
+
+- non devono contenere spazi, altri caratteri speciali, parole chiave riservate e nomi dei valori speciali.
+
+::: {.callout-warning}
+Il linguaggio R è *case-sensitive*: ```MB```, ```mb```, ```Mb``` e ```mB``` per l'interprete R sono cose diverse.
+:::
+
 
 ### Sessioni si lavoro non interattive
 

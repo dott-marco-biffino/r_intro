@@ -38,22 +38,25 @@ Il sito web di R è [www.r-project.org](https://www.r-project.org) visibile in @
 
 ### Cosa è R
 
-Un linguaggio e un ambiente per il calcolo statistico e la rappresentazione grafica dei dati.
+**R** è un linguaggio di programmazione e un ambiente per il calcolo statistico e la rappresentazione grafica dei dati.
 
-È un progetto GNU simile al linguaggio S sviluppato da Chambers e coll. presso i Bell Labs e ne rappresenta una sua diversa implementazione con una buona retro compatibilità, nonostante alcune importanti differenze.
+È un progetto GNU simile al [linguaggio **S**](https://en.wikipedia.org/wiki/S_(programming_language)) sviluppato da John Chambers e colleghi presso i Bell Labs e ne rappresenta una sua diversa implementazione con una buona retro compatibilità, nonostante alcune importanti differenze.
 
 **R** offre sia un ambiente interattivo per il calcolo statistico e la rappresentazione grafica dei dati, sia l'esecuzione di script invocando l'interprete da un terminale.
 
 **R** è:
 
-- È un linguaggio matriciale, cioè un linguaggio che:
+- È un linguaggio matriciale^[Altri esempi di linguaggi matriciali sono [GAUSS](https://en.wikipedia.org/wiki/GAUSS_(software)), [MATLAB](https://it.wikipedia.org/wiki/MATLAB), [APL](https://en.wikipedia.org/wiki/APL_(programming_language)), [GNU Octave](https://octave.org/).], cioè un linguaggio che:
 
-  - Non necessita di dichiarazioni specifiche per definire vettori, matrici e array (cfr. @fig-postit), 
+  - Non necessita di dichiarazioni specifiche di tipo e dimensione per definire vettori, matrici e array (cfr. @fig-postit): 
   
-  - Gli array possono essere definiti per concatenazione, 
+  - i vettori possono essere definiti per concatenazione di singoli elementi o di altri vettori,
+  
+  - le matrici possono essere costituite anche mediante affiancamento o sovrapposizione di vettori,
+  
   - Non necessita di iterazioni per operare sugli array
 
-- A tipizzazione debole  (cfr. @fig-postit),
+- A tipizzazione debole (cfr. @fig-postit), cioè non è necessario dichiarare il tipo dei dati che si stanno trattando poiché l'interprete lo desume dai dati stessi, 
 
 - Basato sul paradigma di programmazione funzionale,
 
@@ -61,29 +64,47 @@ Un linguaggio e un ambiente per il calcolo statistico e la rappresentazione graf
 
 - Dotato di capacità di programmazione orientata agli oggetti.
 
-![Un mio appunto del 2009 sul confronto fra **R** e **FORTRAN 77** relativo alla creazione di una matrice. ](figures/post-it.png){#fig-postit}
-
+![Un mio appunto del 2009 sul confronto fra **FORTRAN 77** e **R** relativo alla creazione di una matrice. ](figures/post-it.png){#fig-postit}
 
 ### Interfaccia
 
-R offre all’utente è un’interfaccia di base a linea di comando
-L’ambiente è interattivo: quando l’utente digita al prompt un’istruzione e preme invio, R la elabora e ne visualizza sullo schermo il risultato
-Fanno eccezione le istruzioni di assegnazione a seguito delle quali non è previsto alcun output
+**R** offre all'utente è un'interfaccia di base a linea di comando. 
 
-Esistono molte interfacce grafiche alternative
-Alcune rendono R simile ad altri ambienti di calcolo statistico con interfaccia grafica basata su menù
-Altre sono maggiormente orientate alla programmazione
-Maggiori info su http://www.sciviews.org/_rgui/ 
+L'interprete dei comandi è interattivo: quando l'utente digita al prompt  un'istruzione e preme invio, **R** la elabora e ne visualizza sullo schermo il risultato. Ad esempio:
+
+```{r chunk1}
+#| echo: true
+
+10 + 5 * 3
+```
+
+Fanno eccezione le istruzioni che prevedono l'assegnazione del risultato a una variabile per le quali non è previsto, di norma, alcun output.
+
+```{r chunk2}
+#| echo: true
+
+valore<- 10 + 5 * 4
+```
+
+Per vedere il risultato della precedente espressione è necessario richiamarlo:
+
+```{r chunk3}
+#| echo: true
+
+valore
+```
+
+Oltre all'interfaccia a linea di comando offerta dall'inteprete **R**, esistono molte interfacce grafiche alternative.
+
+Alcune rendono **R** simile ad altri ambienti di calcolo statistico dotandolo di interfaccia grafica punta&clicca con menù e finestre di dialogo che consentono di scegliere cosa fare e come farlo.
+
+Altre sono maggiormente orientate alla programmazione e forniscono un ambiente di sviluppo integrato (IDE). L'IDE più celebre è [RStudio](https://posit.co/downloads/).
 
 ## Il linguaggio R
 
 ### Tipi di dati fondamentali
 
 I tipi di dati fondamentali in **R** sono:
-```{r}
-
-```
-
 
 - ```logical``` con i valori ```FALSE``` e ```TRUE``` (che possono essere abbreviati in ```F``` e ```T```)
 
@@ -113,7 +134,7 @@ In **R** esistono, inoltre, le seguenti costanti (in senso lato):
 
 - ```pi```.
 
-Diversamente da molti altri linguaggio la costante di Nepero, base dei logaritmi naturali, non è definita come costante in **R**.
+Diversamente da molti altri linguaggi la costante di Nepero, base dei logaritmi naturali, non è definita come costante in **R**.
 
 ### Vettori, matrici e array
 
@@ -149,30 +170,39 @@ x<- c(4L, 6L, 11L, 3L, 2L)
 
 L'assegnazione *di solito* non produce alcun output nella console
 
-Per visualizzare il contenuto della variabile ```x``` è sufficiente scriverla al prompt e premere invio
+Per visualizzare il contenuto della variabile ```x``` è sufficiente scriverla al prompt e premere invio:
 
 ```{r integer3}
 #| echo: true
 x
 ```
 
-In realtà questa è solo una scorciatoia per una chiamata di funzione più estesa
+In realtà questa è solo una scorciatoia per una chiamata della  funzione ```print()``` che avviene implicitamente alla pressione del tasto invio:
 
 ```{r integer4}
 #| echo: true
 print(x)
 ```
 
-Ovviamente sono disponibili i comuni operatori matematici applicabili a agli operandi come il vettore ```x```
+Ovviamente sono disponibili i comuni operatori matematici applicabili agli operandi come il vettore ```x```:
 
 ```{r math1}
 #| echo: true
+-x
+
+2 * x
+
 x^2
 ```
 
+Così come sono disponibili molte funzioni matematiche:
 ```{r math2}
 #| echo: true
 sqrt(x)
+
+sin(x)
+
+log(x)
 ```
 
 ```{r math3}
@@ -180,29 +210,25 @@ sqrt(x)
 sqrt(x) - x^2
 ```
 
-In realtà l'elevamento a potenza ```^``` è un operatore matematico mentre ```sqrt()``` è una funzione
+I principali operatori matematici in R sono ```+```, ```-```, ```*```, ```/```, ```^```, ```%%```, ```%/%```. Per i dettagli si visiti la pagina di aiuto mediante il comando ```?Arithmetic``` 
 
-I principali operatori matematici in R sono ```+```, ```-```, ```*```, ```/```, ```^```, ```%%```, ```%/%```
-
-Per i dettagli si visiti la pagina di aiuto mediante il comando ```?Arithmetic``` 
-
-È possibile concatenare vettori in un vettore più lungo
+È possibile concatenare vettori in un vettore più lungo:
 ```{r vector1}
 #| echo: true
 y<- c(x, x^2, sqrt(x))
 y
 ```
 
-Oppure arrangiare gli elementi di un vettore in una matrice
+È anche possibile arrangiare gli elementi di un vettore in una matrice:
 ```{r matrix1}
 #| echo: true
 A<- matrix(y, nrow=3, ncol=5)
 A
 ```
 
-Utilizzare ```?c``` e ```?matrix``` per consultare le relative pagine di aiuto
+È possibile digitare a prompt ```?c``` e ```?matrix``` per consultare le relative pagine di aiuto.
 
-Alcuni calcoli statistici e funzioni applicate al vettore ```y```:
+Veniamo alle funzioni per i calcoli statistici più semplici applicate, ad esempio, al vettore ```y```:
 
 ```{r}
 #| echo: true

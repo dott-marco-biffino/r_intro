@@ -9,7 +9,7 @@ format: html
 
 > “Free software” is a matter of liberty, not price. To understand the concept, you should think of “free” as in “free speech”, not as in “free beer”. *Richard Stallman - Free Software Fundation*
 
-> Free software is a matter of the users’ freedom to run, copy, distribute, study, change and improve the software. *Richard Stallman - Free Software Fundation*
+> Free software is a matter of the users' freedom to run, copy, distribute, study, change and improve the software. *Richard Stallman - Free Software Fundation*
 
 Sono quattro le libertà fondamentali che il software libero garantisce agli utenti:
 
@@ -251,7 +251,7 @@ sd(y)
 
 - Agli elementi di una lista può essere attribuito un nome 
 
-- Gli elementi di una lista sono accessibili anche attraverso l’indice di posizione
+- Gli elementi di una lista sono accessibili anche attraverso l'indice di posizione
 
 - Esistono funzioni specifiche che consentono di manipolare le liste in modo rapido ed efficiente evitando l'uso di cicli
 
@@ -456,31 +456,28 @@ ic_prop(cases = casi,
 
 ### Il workspace
 
-Quando R è in esecuzione il workspace, o spazio di lavoro, è interamente contenuto nella memoria dell’elaboratore e contiene gli oggetti che vengono creati nel corso delle elaborazioni a seguito di operazioni di assegnazione a nomi simbolici — cioè i dati, i risultati e le eventuali funzioni create dall’utente
+Quando R è in esecuzione il *workspace*, o spazio di lavoro, è interamente contenuto nella memoria dell'elaboratore e contiene gli oggetti che vengono creati nel corso delle elaborazioni a seguito di operazioni di assegnazione a nomi simbolici — cioè i dati, i risultati e le eventuali funzioni create dall'utente
 
 In R, qualsiasi cosa venga assegnata ad un nome simbolico diviene un oggetto nello spazio di lavoro. 
 
-- ls()
+La funzione ```ls()``` produce l'elenco degli oggetti contenuti nel *workspace*. Mentre la funzione ```ls.str()``` produce il medesimo elenco di oggetti aggiungendo, però, informazioni sul tipo dell'oggetto e sul valore.
 
-  Visualizza l’elenco degli oggetti contenuti nel workspace.
+```{r ls}
+ls()
+ls.str()
+```
 
-- ls.str()
-
-  Visualizza un elenco degli oggetti, aggiungendo informazioni sul tipo dell’oggetto e sul valore.
-
-- rm(<nome>)
-
-  Rimuove l’oggetto <nome> dal workspace.
+La funzione ```rm(<nome>)``` permette di rimuovere l'oggetto ```<nome>``` dal *workspace*. Usare ```?rm``` per approfondimenti.
 
 - rm(<list>)
 
 - save(<nome>, file="nomefile.Rdata")
 
-  Salva nel file nomefile.rda l’oggetto<nome>.
+  Salva nel file nomefile.rda l'oggetto<nome>.
 
 - save.image(file="nomefile.Rdata")
 
-  Salva l’immagine dell’intero workspace nel file nomefile.rda. Questa immagine non sarà letta al successivo riavvio del sistema, ma dovrà essere ricaricata esplicitamente.
+  Salva l'immagine dell'intero workspace nel file nomefile.rda. Questa immagine non sarà letta al successivo riavvio del sistema, ma dovrà essere ricaricata esplicitamente.
 
 - load(file="nomefile.Rdata")
 
@@ -488,9 +485,11 @@ In R, qualsiasi cosa venga assegnata ad un nome simbolico diviene un oggetto nel
 
 ### La cartella di lavoro
 
-È possibile salvare l’immagine del workspace in un file con estensione .Rdatata nella directory di lavoro corrente.
+La cartella di lavoro o *working directory* è quella cartella nel file system in cui **R** effettua le operazioni di lettura e scrittura di file, se non diversamente specificato.
 
+Di norma coincide con la cartella predefinita che il sistema operativo attribuisce all'utente.
 
+È possibile salvare l'immagine del workspace in un file con estensione .Rdata nella directory di lavoro corrente.
 
 ### Le istruzioni in R
 
@@ -533,7 +532,7 @@ Il linguaggio R è *case-sensitive*: ```MB```, ```mb```, ```Mb``` e ```mB``` per
 
 R offre anche la facoltà di lavorare in modo non interattivo
 Cioè la possibilità di inserire sequenze di istruzioni in un file di testo per automatizzare il lavoro
-Questi file possono essere letti dall’interprete dei comandi mediante l’istruzione
+Questi file possono essere letti dall'interprete dei comandi mediante l'istruzione
 source(<nomefile.r>, echo=T, print.eval=T) 
 
 #### Rscript
@@ -542,7 +541,7 @@ source(<nomefile.r>, echo=T, print.eval=T)
 
 ## Il sistema di aiuto in linea e la documentazione
 
-### Funzioni per l’interrogazione dell’aiuto in linea
+### Funzioni per l'interrogazione dell'aiuto in linea
 
 - help("<parola_chiave>") oppure ?<parola_chiave>
 
@@ -550,7 +549,7 @@ source(<nomefile.r>, echo=T, print.eval=T)
   
 - help.search("<stringa>") 
 
-  Visualizza l’elenco delle pagine di aiutoche contengono <stringa>. È consigliabileinterrogare il sistema di aiuto conquesta istruzione quando non si conosceesattamente quale parola chiave cercare.
+  Visualizza l'elenco delle pagine di aiutoche contengono <stringa>. È consigliabileinterrogare il sistema di aiuto conquesta istruzione quando non si conosceesattamente quale parola chiave cercare.
   
 - help.start()
 
@@ -568,11 +567,11 @@ source(<nomefile.r>, echo=T, print.eval=T)
 
 Ogni pagina è identificata da un titolo ed è suddivisa in sezioni.
 
-**Description**: breve descrizione dell’argomento.
+**Description**: breve descrizione dell'argomento.
 
 **Usage**: fornisce la sintassi da usare nella chiamata della funzione, indicando il nome degli argomenti previsti e i loro eventuali valori predefiniti, nella forma nome=valore.
 
-**Arguments**: riporta la lista degli argomenti, indicando per ogni argomento il tipo dei suoi valori, l’obbligatorietà o	l’opzionalità dello stesso.
+**Arguments**: riporta la lista degli argomenti, indicando per ogni argomento il tipo dei suoi valori, l'obbligatorietà o	l'opzionalità dello stesso.
 
 **Details**: fornisce dettagli tecnici inerenti al modo in cui viene 			eseguita la funzione.
 
@@ -582,7 +581,7 @@ Ogni pagina è identificata da un titolo ed è suddivisa in sezioni.
 
 **References**: riferimenti bibliografici e documentali relativi alla metodologia usata.
 
-**See Also**: indica quali argomenti del sistema di aiuto sono correlati con l’argomento visualizzato.
+**See Also**: indica quali argomenti del sistema di aiuto sono correlati con l'argomento visualizzato.
 
 **Examples**:	esempi di uso della funzione descritta.
 

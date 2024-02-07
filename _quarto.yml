@@ -1,0 +1,24 @@
+project:
+  type: book
+
+book:
+  title: "Introduzione a R"
+  subtitle: "Un linguaggio di programmazione libero e gratuito in salsa statistica"
+  author: "Marco Biffino"
+  date: "07/02/2024"
+  page-navigation: true
+  chapters:
+    - index.qmd
+    - 01_free_software.qmd
+    - 02_r_project.qmd
+    - 03_linguaggio_r
+    - 04_espandibilita.qmd
+    - 05_gestione_sessione.qmd
+    
+    
+
+bibliography: bibliografia.bib
+
+format:
+  html:
+    theme: cosmo

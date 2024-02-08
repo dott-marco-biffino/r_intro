@@ -1,0 +1,86 @@
+# Gestione di una sessione di lavoro
+
+## Il workspace
+
+Quando R è in esecuzione il *workspace*, o spazio di lavoro, è interamente contenuto nella memoria dell'elaboratore e contiene gli oggetti che vengono creati nel corso delle elaborazioni a seguito di operazioni di assegnazione a nomi simbolici — cioè i dati, i risultati e le eventuali funzioni create dall'utente
+
+In R, qualsiasi cosa venga assegnata ad un nome simbolico diviene un oggetto nello spazio di lavoro. 
+
+La funzione ```ls()``` produce l'elenco degli oggetti contenuti nel *workspace*. Mentre la funzione ```ls.str()``` produce il medesimo elenco di oggetti aggiungendo, però, informazioni sul tipo dell'oggetto e sul valore.
+
+```{r ls}
+ls()
+ls.str()
+```
+
+La funzione ```rm(<nome>)``` permette di rimuovere l'oggetto ```<nome>``` dal *workspace*. Usare ```?rm``` per approfondimenti.
+
+- rm(<list>)
+
+- save(<nome>, file="nomefile.Rdata")
+
+  Salva nel file nomefile.rda l'oggetto<nome>.
+
+- save.image(file="nomefile.Rdata")
+
+  Salva l'immagine dell'intero workspace nel file nomefile.rda. Questa immagine non sarà letta al successivo riavvio del sistema, ma dovrà essere ricaricata esplicitamente.
+
+- load(file="nomefile.Rdata")
+
+  Carica nello spazio di lavoro gli oggetti R contenuti nel file nomefile.Rdata
+
+## La cartella di lavoro
+
+La cartella di lavoro o *working directory* è quella cartella nel file system in cui **R** effettua le operazioni di lettura e scrittura di file, se non diversamente specificato.
+
+Di norma coincide con la cartella predefinita che il sistema operativo attribuisce all'utente.
+
+È possibile salvare l'immagine del workspace in un file con estensione .Rdata nella directory di lavoro corrente.
+
+## Le istruzioni in R
+
+Le istruzioni in **R** possono essere costituite da:
+
+- **Espressioni**: sequenze finite di operandi (vettori, matrici, liste, altri oggetti) e operatori (aritmetici, logici, di relazione, di concatenazione, ecc...) che deve essere valutata
+
+- **Chiamate di funzione**: tipo ```f(...)```
+
+- **Assegnazioni**: in una delle seguenti forme 
+
+  - ```<nome> <- <espressione>```
+  - ```<espressione> -> <nome>```
+  - ```assign(<nome>, <espressione>)```
+  
+- Questi "elementi", espressioni, chiamate di funzione e assegnazioni possono essere combinati insieme
+
+## Nomi simbolici
+
+La stringa ```<nome>``` che abbiamo incontrato sopra sta ad indicare un generico nome simbolico usato per memorizzare nello spazio di lavoro il risultato della valutazione di un ```<espressione>```.
+
+In **R** i nomi simbolici:
+
+- possono contenere lettere maiuscole e/o minuscole e/o cifre,
+
+- possono contenere i caratteri "_" e ,
+
+- devono iniziare con una lettera o con ".",
+
+- non devono contenere spazi, altri caratteri speciali, parole chiave riservate e nomi dei valori speciali.
+
+::: {.callout-warning}
+Il linguaggio R è *case-sensitive*: ```MB```, ```mb```, ```Mb``` e ```mB``` per l'interprete R sono cose diverse.
+:::
+
+
+## Sessioni si lavoro non interattive
+
+## source()
+
+R offre anche la facoltà di lavorare in modo non interattivo
+Cioè la possibilità di inserire sequenze di istruzioni in un file di testo per automatizzare il lavoro
+Questi file possono essere letti dall'interprete dei comandi mediante l'istruzione
+source(<nomefile.r>, echo=T, print.eval=T) 
+
+## Rscript
+
+## Principali funzioni per la gestione della sessione di lavoro

@@ -1,0 +1,70 @@
+# Il sistema di aiuto in linea e la documentazione
+
+Il sistema di aiuto in linea del linguaggio **R** è piuttosto articolato e capillare e è disponibile in formato testuale, in formato ipertestuale navigabile nel browser e in formato PDF.
+
+La capillarità delle pagine di aiuto è una conseguenza diretta dei requisiti piuttosto stringenti in proposito imposti per la creazione di pacchetti di estensione e per la loro sottomissione al CRAN.
+
+La documentazione ufficiale del linguaggio **R** è disponibile sia in locale, sia online sui siti web ufficiali in formato ipertestuale e PDF.
+
+## Funzioni per l'interrogazione dell'aiuto in linea
+
+Le pagine di aiuto sono organizzate in "argomenti" o in base al nome delle funzioni. Al prompt dei comandi basta digitare ```?parola_chiave``` per accedere alla pagina dedicata all'argomento/funzione "parola_chiave".
+
+In alternativa è possibile invocare l'aiuto in linea in forma più estesa con ```help("parola_chiave")```.  ```?<parola_chiave>```
+
+  Visualizza la pagina di aiuto relativa alla parola chiave del linguaggio R, se esiste, altrimenti visualizza un messaggio.
+  
+```{r help_error}
+#| echo: true
+?parola_chiave
+help("parola_chiave")
+```
+
+Se, invece, si specifica anche il pacchetto e questo non esiste o non è installato sul sistema la funzione genera un errore
+
+```{r help_error2}
+#| echo: true
+#| error: false
+help("parola_chiave", package = "pacchetto")
+```
+
+  
+- help.search("<stringa>") 
+
+  Visualizza l'elenco delle pagine di aiutoche contengono <stringa>. È consigliabileinterrogare il sistema di aiuto conquesta istruzione quando non si conosceesattamente quale parola chiave cercare.
+  
+- help.start()
+
+  Avvia il sistema di aiuto in formato HTML. Tutte le successive richieste di aiuto vengono inviate al browser.
+  
+- options(htmlhelp=FALSE)
+
+  Disattiva il sistema di aiuto in formato HTML.
+  
+- example(<argomento>)
+
+  Esegue il codice esemplificativo riportato in calce alla pagina relativa ad <argomento>
+
+## Contenuti di una tipica pagina di aiuto
+
+Ogni pagina è identificata da un titolo ed è suddivisa in sezioni.
+
+**Description**: breve descrizione dell'argomento.
+
+**Usage**: fornisce la sintassi da usare nella chiamata della funzione, indicando il nome degli argomenti previsti e i loro eventuali valori predefiniti, nella forma nome=valore.
+
+**Arguments**: riporta la lista degli argomenti, indicando per ogni argomento il tipo dei suoi valori, l'obbligatorietà o	l'opzionalità dello stesso.
+
+**Details**: fornisce dettagli tecnici inerenti al modo in cui viene 			eseguita la funzione.
+
+**Value**: descrive la natura del risultato generato
+
+**Note**: avvertenze utili, generalmente riguardanti il risultato prodotto
+
+**References**: riferimenti bibliografici e documentali relativi alla metodologia usata.
+
+**See Also**: indica quali argomenti del sistema di aiuto sono correlati con l'argomento visualizzato.
+
+**Examples**:	esempi di uso della funzione descritta.
+
+## I manuali

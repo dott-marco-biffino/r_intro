@@ -1,0 +1,9 @@
+# Espandibilità
+
+## Il CRAN e gli altri *repository*
+
+## Gestione dei pacchetti 
+
+## CRAN Task Views
+
+## Creazione di nuovi pacchetti

@@ -1,6 +1,6 @@
 # Il sistema di aiuto in linea e la documentazione
 
-Il sistema di aiuto in linea del linguaggio **R** è piuttosto articolato e capillare e è disponibile in formato testuale, in formato ipertestuale navigabile nel browser e in formato PDF.
+Il sistema di aiuto in linea del linguaggio **R** è piuttosto articolato e capillare. Esso è disponibile in formato testuale, in formato ipertestuale navigabile nel browser e in formato PDF.
 
 La capillarità delle pagine di aiuto è una conseguenza diretta dei requisiti piuttosto stringenti in proposito imposti per la creazione di pacchetti di estensione e per la loro sottomissione al CRAN.
 
@@ -8,42 +8,46 @@ La documentazione ufficiale del linguaggio **R** è disponibile sia in locale, s
 
 ## Funzioni per l'interrogazione dell'aiuto in linea
 
-Le pagine di aiuto sono organizzate in "argomenti" o in base al nome delle funzioni. Al prompt dei comandi basta digitare ```?parola_chiave``` per accedere alla pagina dedicata all'argomento/funzione "parola_chiave".
+Le pagine di aiuto sono organizzate in "argomenti" o in base al nome delle funzioni. Una certa pagina, inoltre, può avere molti alias. Al prompt dei comandi basta digitare ```?parola_chiave``` per accedere alla pagina dedicata all'argomento/funzione "parola_chiave".
 
-In alternativa è possibile invocare l'aiuto in linea in forma più estesa con ```help("parola_chiave")```.  ```?<parola_chiave>```
+In alternativa è possibile invocare l'aiuto in linea in forma più estesa con ```help("parola_chiave")```.  Se non è possibile reperire alcuna pagina contenente "parola_chiave" il sistema produce un messaggio:
 
-  Visualizza la pagina di aiuto relativa alla parola chiave del linguaggio R, se esiste, altrimenti visualizza un messaggio.
-  
-```{r help_error}
+```{r help_message}
 #| echo: true
 ?parola_chiave
 help("parola_chiave")
 ```
 
-Se, invece, si specifica anche il pacchetto e questo non esiste o non è installato sul sistema la funzione genera un errore
+La forma estesa ```help()``` permette anche di specificare altri argomenti tra cui ```package``` e ```help_type```. Se il pacchetto non è installato sul sistema la funzione genera un errore.
 
-```{r help_error2}
+```{r help_error}
 #| echo: true
-#| error: false
+#| error: true
 help("parola_chiave", package = "pacchetto")
 ```
 
-  
-- help.search("<stringa>") 
+Una tipica pagina di aiuto corrispondente all'istruzione riportata di seguito, in cui è stato specificato l'argomento ```help_type``` appare in @fig-helppage.
 
-  Visualizza l'elenco delle pagine di aiutoche contengono <stringa>. È consigliabileinterrogare il sistema di aiuto conquesta istruzione quando non si conosceesattamente quale parola chiave cercare.
-  
-- help.start()
+```{r help_sqrt}
+#| echo: true
+#| eval: false
+help("sqrt", help_type = "text")
+```
 
-  Avvia il sistema di aiuto in formato HTML. Tutte le successive richieste di aiuto vengono inviate al browser.
-  
-- options(htmlhelp=FALSE)
+Altri possibili valori dell'argomento ```help_type``` della funzione ```help()``` sono ```"html"``` per la forma ipertestuale (visibile o nel browser o in un'apposita scheda dell'IDE) oppure ```"pdf"``` per il formato PDF.
 
-  Disattiva il sistema di aiuto in formato HTML.
-  
-- example(<argomento>)
+![Pagina di aiuto della funzione ```sqrt()```.](figures/sample_help_page.png){#fig-helppage}
 
-  Esegue il codice esemplificativo riportato in calce alla pagina relativa ad <argomento>
+aprops()  
+help.search("<stringa>") 
+
+Visualizza l'elenco delle pagine di aiuto che contengono <stringa>. È consigliabile interrogare il sistema di aiuto con questa istruzione quando non si conosce esattamente quale parola chiave cercare.
+  
+help.start() Avvia il sistema di aiuto in formato HTML. Tutte le successive richieste di aiuto vengono inviate al browser.
+  
+Per disattivare il sistema di aiuto in formato HTML digitare options(htmlhelp=FALSE).
+  
+Esiste, infine, la funzione example(<argomento>) che esegue il codice esemplificativo riportato in calce alla pagina relativa ad <argomento>.
 
 ## Contenuti di una tipica pagina di aiuto
 
@@ -68,3 +72,7 @@ Ogni pagina è identificata da un titolo ed è suddivisa in sezioni.
 **Examples**:	esempi di uso della funzione descritta.
 
 ## I manuali
+
+I manuali ufficiali di **R** sono disponibili sia sui siti web ufficiali, sia nella vostra installazione locale.
+
+

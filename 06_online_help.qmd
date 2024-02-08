@@ -1,14 +1,16 @@
-# Il sistema di aiuto in linea e la documentazione
+# La documentazione
+
+La documentazione su **R** si articola in pagine di aiuto consultabili durante una sessione di lavoro interattiva e in manuali ufficiali.
+
+Tutta la documentazione ufficiale del linguaggio **R** è disponibile sia in locale, sia online sul CRAN formato ipertestuale e PDF.
+
+## Le pagine dell'aiuto in linea
 
 Il sistema di aiuto in linea del linguaggio **R** è piuttosto articolato e capillare. Esso è disponibile in formato testuale, in formato ipertestuale navigabile nel browser e in formato PDF.
 
 La capillarità delle pagine di aiuto è una conseguenza diretta dei requisiti piuttosto stringenti in proposito imposti per la creazione di pacchetti di estensione e per la loro sottomissione al CRAN.
 
-La documentazione ufficiale del linguaggio **R** è disponibile sia in locale, sia online sui siti web ufficiali in formato ipertestuale e PDF.
-
-## Funzioni per l'interrogazione dell'aiuto in linea
-
-Le pagine di aiuto sono organizzate in "argomenti" o in base al nome delle funzioni. Una certa pagina, inoltre, può avere molti alias. Al prompt dei comandi basta digitare ```?parola_chiave``` per accedere alla pagina dedicata all'argomento/funzione "parola_chiave".
+Le pagine di aiuto sono organizzate in "argomenti" o in base al nome delle funzioni. Una certa pagina, inoltre, può avere molti alias e trattare più funzioni. Al prompt dei comandi basta digitare `?parola_chiave` per accedere alla pagina dedicata all'argomento/funzione "parola_chiave".
 
 In alternativa è possibile invocare l'aiuto in linea in forma più estesa con ```help("parola_chiave")```.  Se non è possibile reperire alcuna pagina contenente "parola_chiave" il sistema produce un messaggio:
 
@@ -26,7 +28,7 @@ La forma estesa ```help()``` permette anche di specificare altri argomenti tra c
 help("parola_chiave", package = "pacchetto")
 ```
 
-Una tipica pagina di aiuto corrispondente all'istruzione riportata di seguito, in cui è stato specificato l'argomento ```help_type``` appare in @fig-helppage.
+Un esempio di pagina di aiuto è riportata in @fig-helppage . Essa è prodotta dall'istruzione seguente in cui è stato specificato l'argomento ```help_type```:
 
 ```{r help_sqrt}
 #| echo: true
@@ -36,22 +38,36 @@ help("sqrt", help_type = "text")
 
 Altri possibili valori dell'argomento ```help_type``` della funzione ```help()``` sono ```"html"``` per la forma ipertestuale (visibile o nel browser o in un'apposita scheda dell'IDE) oppure ```"pdf"``` per il formato PDF.
 
-![Pagina di aiuto della funzione ```sqrt()```.](figures/sample_help_page.png){#fig-helppage}
+![Pagina di aiuto della funzione ```sqrt()```.](figures/sample_help_page.png){#fig-helppage width=75%}
 
-aprops()  
-help.search("<stringa>") 
+L'aiuto in linea di **R** fornisce anche funzioni di ricerca utili quando non si sa esattamente cosa cercare.
 
-Visualizza l'elenco delle pagine di aiuto che contengono <stringa>. È consigliabile interrogare il sistema di aiuto con questa istruzione quando non si conosce esattamente quale parola chiave cercare.
+La funzione  ```aprops()``` effettua una ricerca fra tutti gli oggetti, incluse le funzioni, direttamente accessibili nella sessione di lavoro corrente i cui nomi contengano la stringa passata come argomento. La stringa può essere anche una espressione regolare e la corrispondenza è valutata senza distinguere fra lettere maiuscole e minuscole.
+
+```{r apropos}
+#| echo: true
+apropos("lm")
+
+apropos("^lm")
+```
+
+La funzione ```help.search()``` fornisce funzionalità di ricerca un po' più ricche ed avanzate e visualizza l'elenco delle pagine di aiuto che contengono la stringa o l'espressione regolare passata come argomento. È utile per interrogare il sistema di aiuto quando non si conosce esattamente cosa cercare. L'operatore unario ```??``` fa la medesima cosa.
   
-help.start() Avvia il sistema di aiuto in formato HTML. Tutte le successive richieste di aiuto vengono inviate al browser.
+La funzione ```help.start()``` avvia il sistema di aiuto in formato HTML e tutte la successive richieste di aiuto mediante ```?``` o ```help()``` vengono visualizzate nel browser. Il sistema di aiuto in formato HTML si disattiva digitando ```options(htmlhelp=FALSE)```.
   
-Per disattivare il sistema di aiuto in formato HTML digitare options(htmlhelp=FALSE).
-  
-Esiste, infine, la funzione example(<argomento>) che esegue il codice esemplificativo riportato in calce alla pagina relativa ad <argomento>.
+Segnaliamo a conclusione di questa sezione, la funzione ```example()``` che esegue il codice esemplificativo riportato in calce alla pagina relativa all'alias che viene passato come argomento.
 
-## Contenuti di una tipica pagina di aiuto
+```{r example}
+#| echo: true
+example(sqrt)
+```
 
-Ogni pagina è identificata da un titolo ed è suddivisa in sezioni.
+
+### Contenuti di una tipica pagina di aiuto
+
+Ogni pagina è identificata da un titolo ed è suddivisa in sezioni. Come accennato sopra la pagina può rispondere a molteplici alias impostati dallo sviluppatore e contenere la documentazione di più funzioni.
+
+Le sezioni tipiche delle pagine di aiuto sono:
 
 **Description**: breve descrizione dell'argomento.
 
@@ -71,8 +87,55 @@ Ogni pagina è identificata da un titolo ed è suddivisa in sezioni.
 
 **Examples**:	esempi di uso della funzione descritta.
 
-## I manuali
+## Vignette e codice dimostrativo: 
 
-I manuali ufficiali di **R** sono disponibili sia sui siti web ufficiali, sia nella vostra installazione locale.
+Molti pacchetti includono *vignette*, cioè documenti discorsivi pensati per spiegare e illustrare le funzionalità di un pacchetto. 
+
+In un pacchetto posso coesistere varie *vignette* e il loro elenco può essere consultato mediante la funzione 
+```browseVignettes()``` che apre nel browser una liste di tutte le *vignette* presenti nei pacchetti installati. È possibile restringere la lista a un elenco di pacchetti specificando l'argomento ```package```., vignette() and demo()
+
+I singoli documenti sono accessibili mediante la funzione ```vignette("vignette_name")``` eventualmente specificando l'argomento  ```package```. 
+
+Limitatamente ai pacchetti che hanno almeno una *vignette*, esse sono accessibili anche tramite link presenti nelle pagine dei pacchetti presenti sul CRAN e naturalmente da eventuali siti ufficiali dei pacchetti, ad esempio sul sito del [Tidyverse](https://www.tidyverse.org/) le *vignette* sono accessibili sotto la voce "Articles".
+
+Ciascun pacchetto può includere strumenti dimostrativi capaci di illustrare le funzionalità generali o specifiche disponibili. La funzione ```demo()``` elenca tutte le dimostrazioni presenti in tutti i pacchetti installati localmente. Come già visto si può restringere l'elenco a un pacchetto specifico impostando l'argomento ```package```.
+
+Per eseguire una dimostrazione usare ```demo("demo_name")``` o ```demo("demo_name", package = "package_name")``` se esistono più dimostrazioni con lo stesso nome.
+
+## Manuali ufficiali
+
+I manuali ufficiali di **R** sono disponibili sia sul [CRAN](https://cran.r-project.org/manuals.html), sia nella vostra installazione locale.
+
+Sono disponibili i seguenti manuali:
+
+- **An Introduction to R** contiene un'introduzione al linguaggio e spiega come usarlo per l'analisi statistica e la produzione di grafici;
+
+- **R Data Import/Export** descrive le principali funzioni per l'importazione e l'esportazione dei dati;
+
+- **R Installation and Administration**;
+
+- **Writing R Extensions** che spiega la creazione di pacchetti, il formato per la documentazione, le principali interfacce con altri linguaggi (**C**, **C++**, **Fortran**);
+
+- **The R language definition**, ancora in modalità bozza, documenta il linguaggio **R** in sè e in particolare gli oggetti con cui esso lavora e il processo di valutazioni delle espressioni;
+
+- **R Internals** che rappresenta una guida alle strutture interne di **R** e agli standard di codifica per il *core team* degli sviluppatori del linguaggio;
+
+- **The R Reference Index** che contiene tutte le pagine di aiuto di **R** standard e dei pacchetti raccomandati in formato stampabile (circa 3500 pagine).
+
+Tutti i manuali sono disponibili in formato ipertestuale, PDF e, solo sul CRAN, Epub. È disponibile solo in PDF il manuale **The R Reference Index**.
+
+Nella sezione [Contributed Documentation del CRAN](https://cran.r-project.org/other-docs.html) sono disponibili altri documenti di supporto anche in lingua italiana.
 
 
+## Altri modi per ottenere aiuto
+
+R FAQs (Frequently Asked Questions)
+There are three primary FAQ listings which are periodically updated to reflect very commonly asked questions by R users. There is a Main R FAQ, a Windows specific R FAQ and a Mac OS (OS X) specific R FAQ.
+
+If you find that you can’t answer a question or solve a problem yourself, you can ask others for help, either locally (if you know someone who is knowledgeable about R) or on the internet. In order to ask a question effectively, it helps to phrase the question clearly, and, if you’re trying to solve a problem, to include a small, self-contained, reproducible example of the problem that others can execute. For information on how to ask questions, see, e.g., the R mailing list posting guide, and the document about how to create reproducible examples for R on Stack Overflow.
+
+Stack Overflow
+Stack Overflow is a well organized and formatted site for help and discussions about programming. It has excellent searchability. Topics are tagged, and “r” is a very popular tag on the site with almost 150,000 questions (as of summer 2016). To go directly to R-related topics, visit http://stackoverflow.com/questions/tagged/r. For an example both of the value of the site’s organization and information that is very useful to R users, see “How to make a great R reproducible example?”, which is also mentioned above.
+
+R Email Lists
+The R Project maintains a number of subscription-based email lists for posing and answering questions about R, including the general R-help email list, the R-devel list for R code development, and R-package-devel list for developers of CRAN packages; lists for announcements about R and R packages; and a variety of more specialized lists. Before posing a question on one of these lists, please read the R mailing list instructions and the posting guide.

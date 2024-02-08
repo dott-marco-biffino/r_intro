@@ -1,0 +1,20 @@
+# Software libero
+
+## Introduzione al software libero
+
+> “Free software” is a matter of liberty, not price. To understand the concept, you should think of “free” as in “free speech”, not as in “free beer”. *Richard Stallman - Free Software Fundation*
+
+> Free software is a matter of the users' freedom to run, copy, distribute, study, change and improve the software. *Richard Stallman - Free Software Fundation*
+
+Sono quattro le libertà fondamentali che il software libero garantisce agli utenti:
+
+1. Eseguire il programma per qualunque scopo
+
+2. Studiare il funzionamento del programma e modificarlo per adattarlo alle proprie esigenze
+Accedere al codice sorgente ne è un prerequisito 
+
+3. Facoltà di ridistribuire copie del programma affinché si possa aiutare le persone vicine
+
+4. Facoltà di migliorare il programma e di rilasciare al pubblico la versione migliorata, affinché l'intera comunità possa beneficiarne
+
+## Software libero e analisi statistica

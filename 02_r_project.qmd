@@ -1,0 +1,77 @@
+# Il sito dell'R Project for Statistical Computing
+
+## R Project for Statistical Computing
+
+Il sito web di R è [www.r-project.org](https://www.r-project.org) visibile in @fig-rproject. Nella home page sulla sinistra troviamo alcuni link interessanti:
+
+- Quello alla lista di mirror del [CRAN  - Comprehensive R Archive Network](https://cran.r-project.org/mirrors.html) utile per lo scaricamento del software su cui torneremo più avanti;
+
+- Quello alla [pagina](https://www.r-project.org/about.html) di informazioni generali su R;
+
+- Una serie di link utili sotto la voce **Documentation** che permette l'accesso a manuali, a domande frequenti, a [R Journal](https://journal.r-project.org/), elenco dei [libri su R](https://www.r-project.org/doc/bib/R-books.html) e altro.
+
+![Home page del sito *The R Project for Statistical Computing*. Le frecce arancioni evidenziano alcuni punti discussi nel testo. Screenshot effettuato il 06/02/2024.](figures/r-project_website.png){#fig-rproject}
+
+### Cosa è R
+
+**R** è un linguaggio di programmazione e un ambiente per il calcolo statistico e la rappresentazione grafica dei dati.
+
+È un progetto GNU simile al [linguaggio **S**](https://en.wikipedia.org/wiki/S_(programming_language)) sviluppato da John Chambers e colleghi presso i Bell Labs e ne rappresenta una sua diversa implementazione con una buona retro compatibilità, nonostante alcune importanti differenze.
+
+**R** offre sia un ambiente interattivo per il calcolo statistico e la rappresentazione grafica dei dati, sia l'esecuzione di script invocando l'interprete da un terminale.
+
+**R** è:
+
+- È un linguaggio matriciale^[Altri esempi di linguaggi matriciali sono [GAUSS](https://en.wikipedia.org/wiki/GAUSS_(software)), [MATLAB](https://it.wikipedia.org/wiki/MATLAB), [APL](https://en.wikipedia.org/wiki/APL_(programming_language)), [GNU Octave](https://octave.org/).], cioè un linguaggio che:
+
+  - Non necessita di dichiarazioni specifiche di tipo e dimensione per definire vettori, matrici e array (cfr. @fig-postit): 
+  
+  - i vettori possono essere definiti per concatenazione di singoli elementi o di altri vettori,
+  
+  - le matrici possono essere costituite anche mediante affiancamento o sovrapposizione di vettori,
+  
+  - Non necessita di iterazioni per operare sugli array
+
+- A tipizzazione debole (cfr. @fig-postit), cioè non è necessario dichiarare il tipo dei dati che si stanno trattando poiché l'interprete lo desume dai dati stessi, 
+
+- Basato sul paradigma di programmazione funzionale,
+
+- Dotato di capacità di programmazione strutturata (cicli e istruzioni condizionali),
+
+- Dotato di capacità di programmazione orientata agli oggetti.
+
+![Un mio appunto del 2009 sul confronto fra **FORTRAN 77** e **R** relativo alla creazione di una matrice. ](figures/post-it.png){#fig-postit}
+
+### Interfaccia
+
+**R** offre all'utente è un'interfaccia di base a linea di comando. 
+
+L'interprete dei comandi è interattivo: quando l'utente digita al prompt  un'istruzione e preme invio, **R** la elabora e ne visualizza sullo schermo il risultato. Ad esempio:
+
+```{r chunk1}
+#| echo: true
+
+10 + 5 * 3
+```
+
+Fanno eccezione le istruzioni che prevedono l'assegnazione del risultato a una variabile per le quali non è previsto, di norma, alcun output.
+
+```{r chunk2}
+#| echo: true
+
+valore<- 10 + 5 * 4
+```
+
+Per vedere il risultato della precedente espressione è necessario richiamarlo:
+
+```{r chunk3}
+#| echo: true
+
+valore
+```
+
+Oltre all'interfaccia a linea di comando offerta dall'inteprete **R**, esistono molte interfacce grafiche alternative.
+
+Alcune rendono **R** simile ad altri ambienti di calcolo statistico dotandolo di interfaccia grafica punta&clicca con menù e finestre di dialogo che consentono di scegliere cosa fare e come farlo.
+
+Altre sono maggiormente orientate alla programmazione e forniscono un ambiente di sviluppo integrato (IDE). L'IDE più celebre è [RStudio](https://posit.co/downloads/).

@@ -1,0 +1,343 @@
+# Il linguaggio R
+
+## Tipi di dati fondamentali
+
+I tipi di dati fondamentali in **R** sono:
+
+- ```logical``` con i valori ```FALSE``` e ```TRUE``` (che possono essere abbreviati in ```F``` e ```T```)
+
+- ```integer``` numeri interi contraddistinti dal suffisso ```L``` p.es. ```23L```
+
+- ```double``` numeri in doppia precisione che godono di una rappresentazione “intelligente”
+
+- ```character``` stringhe racchiuse fra apici (```'```) o doppi apici (```"```)
+
+## Valori speciali e costanti
+
+Oltre ai già menzionati ```FALSE``` e ```TRUE```, abbreviati in ```F``` e ```T```, in **R** esistono i seguenti valori speciali:
+
+- ```Inf```
+
+- ```NA``` 
+
+- ```NaN```
+
+- ```NULL```)
+
+In **R** esistono, inoltre, le seguenti costanti (in senso lato):
+
+- ```LETTERS```, ```letters```, 
+
+- ```month.abb```, ```month.name```, 
+
+- ```pi```.
+
+Diversamente da molti altri linguaggi la costante di Nepero, base dei logaritmi naturali, non è definita come costante in **R**.
+
+## Vettori, matrici e array
+
+Primi esempi sui vettori
+
+Creazione di un vettore intero
+
+```{r integer}
+#| echo: true
+c(4L, 6L, 11L, 3L, 2L)
+```
+
+Creazione di un vettore in doppia precisione 
+
+```{r double}
+#| echo: true
+c(4, 6, 11, 3, 2)
+```
+
+Creazione di un vettore stringa
+
+```{r character}
+#| echo: true
+c("4L", "6L", "11L", "3L", "2L")
+```
+
+Assegnazione di un vettore a una variabile
+
+```{r integer2}
+#| echo: true
+x<- c(4L, 6L, 11L, 3L, 2L)
+```
+
+L'assegnazione *di solito* non produce alcun output nella console
+
+Per visualizzare il contenuto della variabile ```x``` è sufficiente scriverla al prompt e premere invio:
+
+```{r integer3}
+#| echo: true
+x
+```
+
+In realtà questa è solo una scorciatoia per una chiamata della  funzione ```print()``` che avviene implicitamente alla pressione del tasto invio:
+
+```{r integer4}
+#| echo: true
+print(x)
+```
+
+Ovviamente sono disponibili i comuni operatori matematici applicabili agli operandi come il vettore ```x```:
+
+```{r math1}
+#| echo: true
+-x
+
+2 * x
+
+x^2
+```
+
+Così come sono disponibili molte funzioni matematiche:
+```{r math2}
+#| echo: true
+sqrt(x)
+
+sin(x)
+
+log(x)
+```
+
+```{r math3}
+#| echo: true
+sqrt(x) - x^2
+```
+
+I principali operatori matematici in R sono ```+```, ```-```, ```*```, ```/```, ```^```, ```%%```, ```%/%```. Per i dettagli si visiti la pagina di aiuto mediante il comando ```?Arithmetic``` 
+
+È possibile concatenare vettori in un vettore più lungo:
+```{r vector1}
+#| echo: true
+y<- c(x, x^2, sqrt(x))
+y
+```
+
+È anche possibile arrangiare gli elementi di un vettore in una matrice:
+```{r matrix1}
+#| echo: true
+A<- matrix(y, nrow=3, ncol=5)
+A
+```
+
+È possibile digitare a prompt ```?c``` e ```?matrix``` per consultare le relative pagine di aiuto.
+
+Veniamo alle funzioni per i calcoli statistici più semplici applicate, ad esempio, al vettore ```y```:
+
+```{r}
+#| echo: true
+sum(y)
+sum(y) / length(y)
+sqrt(sum((y-mean(y))^2)/(length(y)-1))
+```
+
+Ovvero
+```{r}
+#| echo: true
+mean(y)
+sd(y)
+```
+
+
+## Liste
+
+- Una lista in R è un insieme ordinato di oggetti qualsiasi, anche di tipo eterogeneo
+
+- Agli elementi di una lista può essere attribuito un nome 
+
+- Gli elementi di una lista sono accessibili anche attraverso l'indice di posizione
+
+- Esistono funzioni specifiche che consentono di manipolare le liste in modo rapido ed efficiente evitando l'uso di cicli
+
+```{r list1}
+#| echo: true
+l1<- list(
+  pippo=c(1,2,3), 
+  letters[1:3], 
+  mat = A)
+
+l1
+```
+
+### Sottoliste e estrazione di elementi da una lista
+
+Lista con un solo 1° elemento
+```{r list2}
+#| echo: true
+
+l1[1]
+```
+
+1° elemento mediante indice
+
+```{r lis3}
+#| echo: true
+l1[[1]]
+```
+
+1° elemento mediante nome
+
+```{r list4}
+#| echo: true
+l1$pippo
+```
+
+
+## Data frame
+
+- Sono gli oggetti R destinati a memorizzate le tabelle di dati
+
+- Un data frame è una lista di vettori, anche di tipo eterogeneo, tutti della stessa lunghezza  
+
+- Esistono metodi per accedere agevolmente ai dati in un data frame 
+
+```{r df1}
+#| echo: true
+df<- data.frame(
+  num = c(2, 15, 103),
+  stg = c("M.B.", "A.T.", "S.R."),
+  lgl = c(T, F, T)
+)
+
+df
+
+```
+
+
+## Attributi degli oggetti
+
+Per ogni oggetto creato con **R** è possibile specificare un insieme arbitrario di attributi. 
+
+Alcuni attributi, quali ad esempio ```dim```, ```dimnames``` e ```class```, hanno un significato specifico e sono utilizzati dall'interprete **R** per espletare le sue funzioni.
+
+In generale gli attributi di un oggetto si possono: 
+
+- consultare mediante la funzione ```attributes()```,
+
+- impostare o modificare mediante la funzione ```attr()```.
+
+```{r}
+#| echo: true
+z<- summary(y)
+
+attributes(z)
+
+attr(z, which = "new_attr")<- "new_value"
+attributes(z)
+```
+
+Per quegli attributi che hanno un significato speciale e che ricorrono frequentemente possono esistere specifiche funzioni
+
+```{r attributes3}
+#| echo: true
+attributes(A)
+
+class(A)
+dim(A)
+ncol(A)
+nrow(A)
+```
+
+Facciamo un altro esempio con il data frame creato in precedenza.
+
+```{r attributes4}
+#| echo: true
+df
+attributes(df)
+names(df)
+rownames(df)<- letters[1:3]
+df
+```
+
+## Parole chiave riservate
+
+Nella definizione del linguaggio R le seguenti parole chiave sono riservate e non possono essere utilizzate come nomi simbolici:
+break, else, for, function, if, in, next, repeat, while.
+
+I seguenti invece sono valori speciali e in quanto tali sono riservati:
+FALSE, F, Inf, NA, NaN, NULL, TRUE, T
+
+## Programmazione funzionale
+
+In **R**, qualsiasi azione è definita mediante una chiamata a un'opportuna funzione cui vengono passati degli argomenti che possono essere oggetti, parametri ed opzioni.
+
+La chiamata di una funzione produce un risultato che può essere visualizzato o assegnandolo ad un nome simbolico.
+
+In **R** l'utente ha la possibilità di definire nuove funzioni all'interno dello spazio di lavoro mediante la parola chiave ```function()```.
+
+Le funzioni utente sono l'elemento fondamentale della programmazione nel linguaggio **R** e per la sua estensione. 
+
+Vediamo alcuni esempi di funzioni definite dall'utente.
+
+**Esempio 1**: Vogliamo definire una funzione che calcoli la c.d. deviazione standard di popolazione (con denominatore ```n``` anziché ```n - 1```)
+
+```{r functions1}
+#| echo: true
+sd_pop<- function(x) {
+  sqrt( 
+    sum( (x - mean(x) )^2 ) / ( length(x) )
+  )
+}
+```
+
+
+**Esempio 2**: Funzione che calcola l'intervallo di confidenza per la proporzione di un attributo dicotomico
+
+Definiamo la funzione ```ic_prop```:
+
+```{r functions3}
+#| echo: true
+ic_prop <- function(cases, n, labels, level = 0.95) {
+  p <- cases / n
+  z <- qnorm(level)
+  me <- z * sqrt(p * (1 - p) / n)
+  ic1 <- p - me
+  ic2 <- p + me
+  res <- data.frame(
+    cases = cases,
+    size = n,
+    prop = round(p * 100, 2),
+    inf = round(ic1 * 100, 2),
+    sup = round(ic2 * 100, 2)
+  )
+  rownames(res) <- labels
+  return(res)
+}
+```
+
+```{r functions4}
+#| echo: true
+etich<- c("Fumatore", "ExFumatore", "MaiFumatore")
+casi<- c(324, 146, 513)
+dim_camp<- c(983, 1025, 1345)
+
+ic_prop(cases = casi, 
+        n = dim_camp, 
+        labels = etich)
+```
+
+```{r functions5}
+#| echo: true
+casi<- 324
+dim_camp<- 983
+liv_conf<- c(.95, .99)
+etich<- paste("Liv. ", 
+              liv_conf * 100, "%", 
+              sep = "")
+
+ic_prop(cases = casi, 
+        n = dim_camp, 
+        labels = etich, 
+        level = liv_conf)
+```
+
+
+## Controllo del flusso
+
+## Programmazione orientata agli oggetti
+
+

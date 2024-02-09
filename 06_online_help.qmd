@@ -10,7 +10,7 @@ Il sistema di aiuto in linea del linguaggio **R** è piuttosto articolato e capi
 
 La capillarità delle pagine di aiuto è una conseguenza diretta dei requisiti piuttosto stringenti in proposito imposti per la creazione di pacchetti di estensione e per la loro sottomissione al CRAN.
 
-Le pagine di aiuto sono organizzate in "argomenti" o in base al nome delle funzioni. Una certa pagina, inoltre, può avere molti alias e trattare più funzioni. Al prompt dei comandi basta digitare `?parola_chiave` per accedere alla pagina dedicata all'argomento/funzione "parola_chiave".
+Le pagine di aiuto sono organizzate in "argomenti" o in base al nome delle funzioni. Una certa pagina, inoltre, può avere molti alias e trattare più funzioni. Al prompt dei comandi basta digitare `?parola_chiave` per accedere alla pagina dedicata all'argomento/funzione `parola_chiave`.
 
 In alternativa è possibile invocare l'aiuto in linea in forma più estesa con ```help("parola_chiave")```.  Se non è possibile reperire alcuna pagina contenente "parola_chiave" il sistema produce un messaggio:
 
@@ -20,7 +20,7 @@ In alternativa è possibile invocare l'aiuto in linea in forma più estesa con `
 help("parola_chiave")
 ```
 
-La forma estesa ```help()``` permette anche di specificare altri argomenti tra cui ```package``` e ```help_type```. Se il pacchetto non è installato sul sistema la funzione genera un errore.
+La forma estesa ```help()``` permette anche di specificare altri argomenti tra cui ```package``` e ```help_type```. Se il pacchetto non è installato sul sistema la funzione genera un errore^[Ricordiamo che un errore interrompe l'esecuzione e presenta nella console una stringa descrittiva del problema riscontrato che inizia con la parola "Error".].
 
 ```{r help_error}
 #| echo: true
@@ -65,7 +65,7 @@ example(sqrt)
 
 ### Contenuti di una tipica pagina di aiuto
 
-Ogni pagina è identificata da un titolo ed è suddivisa in sezioni. Come accennato sopra la pagina può rispondere a molteplici alias impostati dallo sviluppatore e contenere la documentazione di più funzioni.
+Ogni pagina è identificata da un titolo ed è suddivisa in sezioni (cfr. @fig-helppage) secondo un formato standardizzato^[Il formato della documentazione è documentato nel capitolo 2 "Writing R documentation files" del manuale **Writing R Extensions** (cfr. @sec-manuals).]. Come accennato sopra la pagina può rispondere a molteplici alias impostati dallo sviluppatore e contenere la documentazione di più funzioni.
 
 Le sezioni tipiche delle pagine di aiuto sono:
 
@@ -87,22 +87,7 @@ Le sezioni tipiche delle pagine di aiuto sono:
 
 **Examples**:	esempi di uso della funzione descritta.
 
-## Vignette e codice dimostrativo: 
-
-Molti pacchetti includono *vignette*, cioè documenti discorsivi pensati per spiegare e illustrare le funzionalità di un pacchetto. 
-
-In un pacchetto posso coesistere varie *vignette* e il loro elenco può essere consultato mediante la funzione 
-```browseVignettes()``` che apre nel browser una liste di tutte le *vignette* presenti nei pacchetti installati. È possibile restringere la lista a un elenco di pacchetti specificando l'argomento ```package```., vignette() and demo()
-
-I singoli documenti sono accessibili mediante la funzione ```vignette("vignette_name")``` eventualmente specificando l'argomento  ```package```. 
-
-Limitatamente ai pacchetti che hanno almeno una *vignette*, esse sono accessibili anche tramite link presenti nelle pagine dei pacchetti presenti sul CRAN e naturalmente da eventuali siti ufficiali dei pacchetti, ad esempio sul sito del [Tidyverse](https://www.tidyverse.org/) le *vignette* sono accessibili sotto la voce "Articles".
-
-Ciascun pacchetto può includere strumenti dimostrativi capaci di illustrare le funzionalità generali o specifiche disponibili. La funzione ```demo()``` elenca tutte le dimostrazioni presenti in tutti i pacchetti installati localmente. Come già visto si può restringere l'elenco a un pacchetto specifico impostando l'argomento ```package```.
-
-Per eseguire una dimostrazione usare ```demo("demo_name")``` o ```demo("demo_name", package = "package_name")``` se esistono più dimostrazioni con lo stesso nome.
-
-## Manuali ufficiali
+## Manuali ufficiali {#sec-manuals}
 
 I manuali ufficiali di **R** sono disponibili sia sul [CRAN](https://cran.r-project.org/manuals.html), sia nella vostra installazione locale.
 
@@ -124,18 +109,37 @@ Sono disponibili i seguenti manuali:
 
 Tutti i manuali sono disponibili in formato ipertestuale, PDF e, solo sul CRAN, Epub. È disponibile solo in PDF il manuale **The R Reference Index**.
 
-Nella sezione [Contributed Documentation del CRAN](https://cran.r-project.org/other-docs.html) sono disponibili altri documenti di supporto anche in lingua italiana.
+Nella sezione [Contributed Documentation](https://cran.r-project.org/other-docs.html) del CRAN sono disponibili altri documenti di supporto anche in lingua italiana.
 
+## Vignette e codice dimostrativo: 
+
+Molti pacchetti includono *vignette*, cioè documenti discorsivi pensati per spiegare e illustrare le funzionalità di un pacchetto^[Le caratteristiche delle *vignette* sono documentate alla sezione 1.4 "Writing package vignettes" del **Writing R Extensions** (cfr. @sec-manuals).]. 
+
+In un pacchetto posso coesistere varie *vignette* e il loro elenco può essere consultato mediante la funzione 
+```browseVignettes()``` che apre nel browser una liste di tutte le *vignette* presenti nei pacchetti installati. È possibile restringere la lista a un elenco di pacchetti specificando l'argomento ```package```.
+
+I singoli documenti sono accessibili mediante la funzione ```vignette("vignette_name")``` eventualmente specificando l'argomento  ```package```. 
+
+Limitatamente ai pacchetti che hanno almeno una *vignette*, esse sono accessibili anche tramite link presenti nelle pagine dei pacchetti presenti sul CRAN e naturalmente da eventuali siti ufficiali dei pacchetti, ad esempio sul sito del [Tidyverse](https://www.tidyverse.org/) le *vignette* dei vari pacchetti che ne fanno parte sono accessibili sotto la voce "Articles".
+
+Ciascun pacchetto può includere strumenti dimostrativi capaci di illustrare le funzionalità generali o specifiche disponibili. La funzione ```demo()``` elenca tutte le dimostrazioni presenti in tutti i pacchetti installati localmente. Come già visto si può restringere l'elenco a un pacchetto specifico impostando l'argomento ```package```.
+
+Per eseguire una dimostrazione usare ```demo("demo_name")``` o ```demo("demo_name", package = "package_name")``` se esistono più dimostrazioni con lo stesso nome.
 
 ## Altri modi per ottenere aiuto
 
-R FAQs (Frequently Asked Questions)
-There are three primary FAQ listings which are periodically updated to reflect very commonly asked questions by R users. There is a Main R FAQ, a Windows specific R FAQ and a Mac OS (OS X) specific R FAQ.
+Considerando anche la vasta comunità di utenti sorta intorno al linguaggio **R**, esistono vari altri modi di ottenere aiuto.
 
-If you find that you can’t answer a question or solve a problem yourself, you can ask others for help, either locally (if you know someone who is knowledgeable about R) or on the internet. In order to ask a question effectively, it helps to phrase the question clearly, and, if you’re trying to solve a problem, to include a small, self-contained, reproducible example of the problem that others can execute. For information on how to ask questions, see, e.g., the R mailing list posting guide, and the document about how to create reproducible examples for R on Stack Overflow.
+Un primo canale è quello delle [domande frequenti su R](https://cran.r-project.org/faqs.html) (R FAQ). 
 
-Stack Overflow
-Stack Overflow is a well organized and formatted site for help and discussions about programming. It has excellent searchability. Topics are tagged, and “r” is a very popular tag on the site with almost 150,000 questions (as of summer 2016). To go directly to R-related topics, visit http://stackoverflow.com/questions/tagged/r. For an example both of the value of the site’s organization and information that is very useful to R users, see “How to make a great R reproducible example?”, which is also mentioned above.
+Attualmente le FAQ sono suddivise su tre liste: 
 
-R Email Lists
-The R Project maintains a number of subscription-based email lists for posing and answering questions about R, including the general R-help email list, the R-devel list for R code development, and R-package-devel list for developers of CRAN packages; lists for announcements about R and R packages; and a variety of more specialized lists. Before posing a question on one of these lists, please read the R mailing list instructions and the posting guide.
+- [R FAQ](https://cran.r-project.org/doc/FAQ/R-FAQ.html) raccolta più generale, 
+
+- [R MacOS X FAQ](https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html) raccolta dedicata agli utenti del sistema operativo MacOS,
+
+- [R Windows FAQ](https://cran.r-project.org/bin/windows/base/rw-FAQ.html) dedicata agli utenti dei Microsoft Windows.
+
+Dopo aver tentato di risolvere il problema consultando la documentazione, se non si trova una risposta nelle FAQ (ed è un evento altamente probabile), si può provare a chiedere aiuto a qualcuno che conosca **R** o alla comunità di utenti tramite internet a patto di fornire un esempio minimale e riproducibile^[Nella comunità si parla di *minimal reproducible example* ([MRE](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)).] del vostro problema.
+
+Si può chiedere aiuto sia su sito [Stack Overflow](https://stackoverflow.com/), che attualmente ospita oltre 500mila [discussioni su **R**](http://stackoverflow.com/questions/tagged/r), oppure sulle varie [mailing list di **R**](https://www.r-project.org/mail.html) ricordando che postare una stessa richiesta su più liste è considerata una pratica scorretta e che è responsabilità dell'utente individuare la mailing list più adatta al proprio quesito.

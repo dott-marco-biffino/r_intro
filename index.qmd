@@ -1,0 +1,13 @@
+# Presentazione
+
+Testi, codice sorgente R e output per i webinar/corsi **Introduzione a R**.
+
+Texts, R source code and outputs for **Introduction to R** webinars/courses.
+
+For the moment all materials, except source code, are available only in Italian.
+
+## Licenza/Licence
+
+Tutto questo elaborato e il codice sorgente R sono soggetti alla licenza [Creative Commons - BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+All this text and R source code are licensed under the [Creative Commons - BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).

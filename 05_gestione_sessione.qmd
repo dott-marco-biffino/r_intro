@@ -1,39 +1,70 @@
 # Gestione di una sessione di lavoro
 
-## Il workspace
+In questo capitolo introdurremo vari concetti essenziali per un corretto e produttivo uso di **R**: la sessione di lavoro, il *workspace* e la cartella di lavoro.
+
+Una sessione di lavoro in **R** è rappresentata da tutto ciò che avviene tra la comparsa del prompt `>` dopo aver avviato l'interprete **R** e la chiusura dello stesso.
+
+Durante una sessione di lavoro vengono eseguite espressioni più o meno complesse, letti e scritti file locali o remoti, eccetera. 
+
+Ad ogni sessione di lavoro è associata una cartella di lavoro (o *working directory*) nel *file system* locale in cui **R** legge e scrive i file, se non diversamente specificato dall'utente (cfr. @sec-workingdir).
+
+Ad ogni sessione di lavoro, inoltre, è associato un *workspace* dedicato, cioè una porzione di memoria RAM in cui sono  conservati gli oggetti creati con **R** (cfr. @sec-workspace).
+
+## La cartella di lavoro {#sec-workingdir}
+
+La cartella di lavoro o *working directory* è quella cartella nel file system in cui **R** effettua le operazioni di lettura e scrittura di file, se non diversamente specificato.
+
+Di norma coincide con la cartella predefinita che il sistema operativo attribuisce all'utente.
+
+Il percorso della cartella viene consultato mediante la funzione `getwd()` e viene modificato mediante `setwd()`.
+
+Ad esempio acquisiamo il percorso dell'attuale *working directory* e lo assegniamo a `oldwd`:
+
+```{r wd1}
+#| echo: true
+oldwd<- getwd()
+oldwd
+```
+
+Modifichiamo la *working directory*:
+
+```{r wd2}
+#| echo: true
+#| warning: false
+setwd("figures")
+getwd()
+```
+
+Infine, reimpostiamo la *working directory* utilizzando `oldwd`:
+
+```{r wd3}
+#| echo: true
+setwd(oldwd)
+getwd()
+```
+
+## Il workspace {#sec-workspace}
 
 Quando R è in esecuzione il *workspace*, o spazio di lavoro, è interamente contenuto nella memoria dell'elaboratore e contiene gli oggetti che vengono creati nel corso delle elaborazioni a seguito di operazioni di assegnazione a nomi simbolici — cioè i dati, i risultati e le eventuali funzioni create dall'utente
 
-In R, qualsiasi cosa venga assegnata ad un nome simbolico diviene un oggetto nello spazio di lavoro. 
+In R, qualsiasi cosa venga assegnata ad un nome simbolico mediante `<-`, `->` o `assign()` diviene un oggetto nello spazio di lavoro. 
 
-La funzione ```ls()``` produce l'elenco degli oggetti contenuti nel *workspace*. Mentre la funzione ```ls.str()``` produce il medesimo elenco di oggetti aggiungendo, però, informazioni sul tipo dell'oggetto e sul valore.
+La funzione `ls()` produce l'elenco degli oggetti contenuti nel *workspace*. Mentre la funzione `ls.str()` produce il medesimo elenco di oggetti aggiungendo, però, informazioni sul tipo dell'oggetto e sul valore.
 
 ```{r ls}
 ls()
 ls.str()
 ```
 
-La funzione ```rm(<nome>)``` permette di rimuovere l'oggetto ```<nome>``` dal *workspace*. Usare ```?rm``` per approfondimenti.
+La funzione `rm(<nome>)` permette di rimuovere l'oggetto `<nome>` dal *workspace*. Usare `?rm` per approfondimenti.
 
 - rm(<list>)
 
-- save(<nome>, file="nomefile.Rdata")
+- save(<nome>, file="nomefile.Rdata") Salva nel file nomefile.rda l'oggetto<nome>.
 
-  Salva nel file nomefile.rda l'oggetto<nome>.
+- save.image(file="nomefile.Rdata") Salva l'immagine dell'intero workspace nel file nomefile.rda. Questa immagine non sarà letta al successivo riavvio del sistema, ma dovrà essere ricaricata esplicitamente.
 
-- save.image(file="nomefile.Rdata")
-
-  Salva l'immagine dell'intero workspace nel file nomefile.rda. Questa immagine non sarà letta al successivo riavvio del sistema, ma dovrà essere ricaricata esplicitamente.
-
-- load(file="nomefile.Rdata")
-
-  Carica nello spazio di lavoro gli oggetti R contenuti nel file nomefile.Rdata
-
-## La cartella di lavoro
-
-La cartella di lavoro o *working directory* è quella cartella nel file system in cui **R** effettua le operazioni di lettura e scrittura di file, se non diversamente specificato.
-
-Di norma coincide con la cartella predefinita che il sistema operativo attribuisce all'utente.
+- load(file="nomefile.Rdata") Carica nello spazio di lavoro gli oggetti R contenuti nel file nomefile.Rdata
 
 È possibile salvare l'immagine del workspace in un file con estensione .Rdata nella directory di lavoro corrente.
 

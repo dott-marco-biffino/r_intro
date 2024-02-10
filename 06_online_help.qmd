@@ -111,7 +111,7 @@ Tutti i manuali sono disponibili in formato ipertestuale, PDF e, solo sul CRAN, 
 
 Nella sezione [Contributed Documentation](https://cran.r-project.org/other-docs.html) del CRAN sono disponibili altri documenti di supporto anche in lingua italiana.
 
-## Vignette e codice dimostrativo: 
+## Vignette e codice dimostrativo
 
 Molti pacchetti includono *vignette*, cioè documenti discorsivi pensati per spiegare e illustrare le funzionalità di un pacchetto^[Le caratteristiche delle *vignette* sono documentate alla sezione 1.4 "Writing package vignettes" del **Writing R Extensions** (cfr. @sec-manuals).]. 
 

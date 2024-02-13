@@ -5,7 +5,8 @@ book:
   title: "Introduzione a R"
   subtitle: "Un linguaggio di programmazione libero e gratuito in salsa statistica"
   author: "Marco Biffino"
-  date: "2024-02-07"
+  date: today
+  date-format: "dddd DD/MM/YYYY"
   page-navigation: true
   chapters:
     - index.qmd

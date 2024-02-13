@@ -1,4 +1,4 @@
-# Presentazione
+# Presentazione {.unnumbered}
 
 Testi, codice sorgente R e output per i webinar/corsi **Introduzione a R**.
 
